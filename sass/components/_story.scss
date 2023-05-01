@@ -1,0 +1,98 @@
+.stories {
+    overflow-x: hidden;
+}
+.story {    
+    max-width: 1000px;
+    margin: 0 auto;
+    box-shadow: 0 3rem 6rem rgba(0,0,0, .1);
+    background-color: rgba(255, 255, 255, 0.6);
+    border-radius: 3px;
+    padding: 6rem;
+    padding-left: 10rem;    
+    font-size: 1.6rem;
+
+    transform: skewX(-12deg);
+
+    @include respond(small-pc) {
+        width: 90%;
+    }
+    @include respond(phone) {
+        padding-left: 5rem;
+        transform: skewX(0deg);
+    }
+
+    & > * {
+        transform: skewX(12deg); 
+
+        @include respond(phone) {
+            transform: skewX(0deg);
+        }
+    }
+
+    // display: flex;
+    &::after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+    &__shape {
+        width: 15rem;
+        height: 15rem;
+        float: left;
+        -webkit-shape-outside: circle(50% at 50% 50%);
+        shape-outside: circle(50% at 50% 50%);
+        -webkit-clip-path: circle(50% at 50% 50%);
+        clip-path: circle(50% at 50% 50%);
+        transform: translateX(-4rem) skewX(12deg);
+        position: relative;
+
+        @include respond(phone) {
+            transform: translate(-2rem, -4px) skewX(0deg);
+        }
+
+         img {
+            width: 100%;
+            height: 100%;
+            transform: scale(1.1);
+            transition: all .2s;
+         }
+
+    }
+    &__text{
+        flex-basis: fit-content;
+        // width: 60%;
+    }
+    &__caption {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, 150%);
+        color: #fff;
+        text-transform: uppercase;
+        font-size: 1.7rem;
+        text-align: center;
+        opacity: 0;
+        transition: all .2s;
+        backface-visibility: hidden;
+    }
+    &:hover &__caption {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+    &:hover figure img {
+        transform: scale(1);
+        filter: blur(3px) brightness(95%);
+    }
+
+    &:not(:last-child) {
+        margin-bottom: 120px;
+
+        @include respond(small-pc) {
+            margin-bottom: 80px;
+        }
+        @include respond(avr-phone) {
+            margin-bottom: 60px;
+        }
+    }
+}

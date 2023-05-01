@@ -1,0 +1,214 @@
+.tours {
+    display: flex;
+    gap: 6rem;
+
+    @include respond(small-pc) {
+		flex-wrap: wrap;
+        justify-content: space-around;
+	}
+    @include respond(tab) {
+        gap: 6rem;
+	}
+}
+.tour-card {
+    flex-basis: 33.333333%;
+    perspective: 150rem;
+    height: 50rem;
+    transition: all .3s;
+    position: relative;
+    color: #000;
+
+    min-width: 260px;
+
+    @include respond(small-pc) {
+        flex-basis: 40%;
+        justify-content: center;
+    }
+    @include respond(tab) {
+        height: fit-content;
+    }
+    @include respond(phone) {
+        flex-basis: 70%;
+        justify-content: center;
+    }
+    @include respond(avr-phone) {
+        flex-basis: 80%;
+	}
+    
+    &__side {
+        transition: all .8s;
+        perspective: 150rem;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        backface-visibility: hidden;
+        border-radius: 3px;
+        box-shadow: 0 1.5rem 4rem rgba(0,0,0, .15);
+
+        &--front {
+            z-index: 2;
+            background-color: #fff;
+        }
+        &--back {
+            transform: rotateY(-180deg);
+            z-index: 1;
+
+            &-1 {
+                background-image: linear-gradient(to right bottom, #ffb900, #ff7730);
+            }
+            &-2 {
+                background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 1), rgba(85, 197, 122, 1));
+            }
+            &-3 {
+                background-image: linear-gradient(to right bottom, rgba(41, 152, 255, 1), rgba(85, 67, 250, 1));
+            }
+
+            @include respond(tab) {
+                transform: rotateY(0deg);
+                clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+                -webkit-clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+            }
+        }
+
+        @include respond(tab) {
+            position: unset;
+            backface-visibility: visible;
+            height: fit-content;
+        }
+    }
+    &:hover &__side--front{
+        transform: rotateY(-180deg);
+        // background-color: green;
+        z-index: 1;
+
+        @include respond(tab) {
+            transform: rotateY(0deg);
+        }
+    }
+    &:hover &__side--back{
+        transform: rotateY(-360deg);
+        background-color: green;
+        z-index: 2;
+
+        @include respond(tab) {
+            transform: rotateY(0deg);
+        }
+    }
+    &__heading {
+        font-size: 2.8rem;
+        font-weight: 300px;
+        text-transform: uppercase;
+        position: absolute;
+        color: #fff;
+        text-align: right;
+        top: 12rem;
+        right: 2rem;
+
+        width: 70%;
+
+        &__heading-span {
+            padding: 1rem 1.5rem;
+            box-decoration-break: clone;
+            -webkit-box-decoration-break: clone;
+            &--1{
+                background-image: linear-gradient(to right bottom, rgba(255, 187, 0, 0.85), rgba(255, 120, 48, 0.85));
+            }
+            &--2{
+                background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.85), rgba(85, 197, 122, 0.85));
+            }
+            &--3{
+                background-image: linear-gradient(to right bottom, rgba(41, 152, 255, 0.85), rgba(85, 67, 250, 0.85));
+            }
+        }
+    }
+    &__picture {
+        background-size: cover;
+        height: 23rem;
+        background-blend-mode:screen;
+        overflow: hidden;
+        clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+        -webkit-clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+
+        &--1 {
+            background-image: linear-gradient(to right bottom, #ffb900, #ff7730), url('/img/nat-5.jpg');
+        }
+        &--2 {
+            // linear-gradient(to right bottom,rgba($color-primary-light, 0.8), rgba($color-primary-light, 0.8))
+            background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 1), rgba(85, 197, 122, 1)), url('/img/nat-6.jpg');
+        }
+        &--3 {
+            background-image: linear-gradient(to right bottom, rgba(41, 152, 255, 1), rgba(85, 67, 250, 1)), url('/img/nat-7.jpg');
+        }
+
+        @include respond(small-pc) {
+            height: 25rem;
+        }
+
+    }
+    &__details {
+        font-size: 1.5rem;
+
+        &__list {
+        list-style: none;
+        width: 80%;
+        margin: 0 auto;
+
+        li {
+            text-align: center;
+            padding: 1rem;
+
+            &:not(:last-child) {
+                border-bottom: 1px solid #eee;
+            }
+        
+        }
+    }
+    }
+
+    &__cta {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 70%;
+        text-align: center;
+
+        &__price-box {
+            color: #fff;
+            margin-bottom: 8rem;
+
+            @include respond(tab) {
+                margin-bottom: 0rem;
+            }
+            &__price-only {
+                font-size: 1.4rem;
+                text-transform: uppercase;
+
+            }
+            &__price {
+                font-size: 6rem;
+                font-weight: 400;
+
+                @include respond(tab) {
+                    font-size: 5rem;
+                }
+            }
+
+        }
+        & .btn {
+            @include respond(tab) {
+                padding: 1.5rem 3.5rem;
+                margin-top: 1.2rem;
+            }
+        }
+        @include respond(tab) {
+            position: unset;
+            transform: translate(0%, 0%);
+            text-align: center;
+            width: 100%;
+            padding: 2rem 0 5rem;
+        }
+    }
+}

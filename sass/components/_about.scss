@@ -1,0 +1,20 @@
+.about {
+    display: flex;
+    gap: 1.5rem;
+    
+    div {
+        flex-basis: 50%;
+
+        
+    @include respond(small-pc) {
+        flex-basis: 95%;
+	}
+    }
+
+    @include respond(small-pc) {
+		flex-wrap: wrap;
+        justify-content: center;
+	}
+
+
+}
